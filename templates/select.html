@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/FullHeight.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/select.css') }}">
+{% endblock styles %}
+
+{% block content %}
+
+<div class="position-absolute h-100 w-100 d-flex align-items-center justify-content-center">
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url_for('index')}}" method="get" class="form-inline px-5 py-3">
+                <div class="form-group mx-sm-3 mb-2">
+                    <select name="term" class="form-control form-control-lg text-muted">
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </div>
+                <h1 class="text-muted">日前に行く</h1>
+                <button type="submit" class="btn btn-primary mb-2 ml-5 px-5">決定</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
