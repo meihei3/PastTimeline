@@ -1,27 +1,91 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Kakotter</a>
 
-    <div class="container">
+        <div class="collapse navbar-collapse justify-content-end" id="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="far fa-calendar-alt"></i>日付を指定
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <i class="fas fa-sign-out-alt"></i>ログアウト
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
         <div class="row">
-            <div class="col-3 bg-light">
-                <p>aaaaa</p>
+
+            <!-- profile -->
+            <div class="col-3">
+                <div class="card bg-dark">
+                    <img class="card-img-top" src="{{ profile.profile_banner_url }}" alt="profile background image">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3 p-1">
+                                <img src="{{ profile.profile_image_url }}">
+                            </div>
+                            <div class="col-9 p-1 text-truncate text-light">
+                                <font class="h5 text-white">{{ profile.name }}</font>
+                                <p>{{ profile.screen_name }}</p>
+                            </div>
+                        </div>
+                        <div class="row text-light">
+                            <div class="col-4 p-1 text-truncate">
+                                <p>ツイート</p>
+                                {{ profile.statuses_count }}
+                            </div>
+                            <div class="col-4 p-1 text-truncate">
+                                <p>フォロー</p>
+                                {{ profile.friends_count }}
+                            </div>
+                            <div class="col-4 p-1 text-truncate">
+                                <p>フォロワー</p>
+                                {{ profile.followers_count }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- timeline -->
             <div class="col-6">
 
                 {% for tweet in data %}
 
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-body pt-2 px-2">
+                        <div class="row ml-1">
                             <div class="col-1 p-0">
                                 <div class="m-0">
-                                    <img src="{{ tweet.user.profile_image_url }}">
+                                    {% if tweet.retweeted_status %}
+                                    <img src="{{ tweet.retweeted_status.user.profile_image_url }}" class="img-responsive w-100">
+                                    {% else %}
+                                    <img src="{{ tweet.user.profile_image_url }}" class="img-responsive w-100">
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-11">
-                                <p class="p-0 m-0"><font class="font-weight-bold">{{tweet.user.name}}</font> {{ to_JST(tweet.created_at) }}</p>
+                                <span class="p-0 m-0 d-inline-block text-truncate" style="max-width: 100%;">
+                                    {% if tweet.retweeted_status %}
+                                    <font class="font-weight-bold">{{tweet.retweeted_status.user.name}}</font> {{ to_JST(tweet.retweeted_status.created_at) }}
+                                    {% else %}
+                                    <font class="font-weight-bold">{{tweet.user.name}}</font> {{ to_JST(tweet.created_at) }}
+                                    {% endif %}
+                                </span>
+                                {% if tweet.retweeted_status %}
+                                <p class="p-0 m-0">{{ tweet.retweeted_status.text }}</p>
+                                <p class="p-0 m-0 text-muted">retweet by {{ tweet.user.name }}</p>
+                                {% else %}
                                 <p class="p-0 m-0">{{ tweet.text }}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -30,8 +94,26 @@
             {% endfor %}
 
             </div>
-            <div class="col-3 bg-light">
-                <p>cccc</p>
+
+
+            <!-- info -->
+            <div class="col-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="text-center py-5">
+                            <p>広告の予定</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 bg-dark">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <p class="text-light">&copy; 2018 Kakotter</p>
+                            <a class="text-muted" href="https://twitter.com/app1e_s">開発者</a>
+                            <a class="text-muted" href="https://twitter.com">いまにもどる</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

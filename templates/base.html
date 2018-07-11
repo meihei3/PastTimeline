@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>{% block title %}{{ title|default("kakotter") }}{% endblock title %}</title>
+    <title>{% block title %}{{ title|default("Kakotter") }}{% endblock title %}</title>
 
     {%- block metas %}
     <meta charset="utf-8">
@@ -13,13 +13,13 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('/static', filename='css/stickyFooter.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/stickyFooter.css') }}">
 
     <!-- icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <!-- JP font -->
-    <link rel="stylesheet" href="{{ url_for('/static', filename='css/mainFont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/mainFont.css') }}">
     {%- endblock styles %}
 </head>
 <body>
@@ -31,7 +31,7 @@
 <!-- footer -->
 <footer class="footer">
     <div class="container">
-        <p class="text-muted text-center">&copy; 2018 app1e_s</p>
+        <p class="text-muted text-center">&copy; 2018 Kakotter&emsp;&emsp;created by <a class="text-muted" href="https://twitter.com/app1e_s">@app1e_s</a></p>
     </div>
 </footer>
 
