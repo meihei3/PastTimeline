@@ -1,1 +1,1 @@
-web: python PastTimeline.py
+web: gunicorn PastTimeline:app --log-file -
