@@ -124,11 +124,14 @@ app.jinja_env.globals.update(to_JST=to_JST)
 # 各 route() 関数の前に実行される処理
 @app.before_request
 def before_request():
+    # CSSの読み込み
+    if request.endpoint == 'static':
+        return
     # セッションが保存されている (= ログイン済み)
     if session.get('oauth_token') is not None and session.get('oauth_token_secret') is not None:
         return
     # リクエストがログインに関するもの
-    if request.path in ('/login', '/callback', '/cache'):
+    if request.path in ('/login', '/callback'):
         return
     # ログインされておらずログインページに関するリクエストでもなければリダイレクトする
     return redirect('/login')
