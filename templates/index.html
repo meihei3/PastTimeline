@@ -2,38 +2,38 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-3 bg-light">
-            <p>aaaaa</p>
-        </div>
-        <div class="col-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 bg-light">
+                <p>aaaaa</p>
+            </div>
+            <div class="col-6">
 
-            {% for tweet in data %}
+                {% for tweet in data %}
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-1 p-0">
-                            <div class="m-0">
-                                <img src="{{ tweet.user.profile_image_url }}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-1 p-0">
+                                <div class="m-0">
+                                    <img src="{{ tweet.user.profile_image_url }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-11">
-                            <p class="p-0 m-0"><font class="font-weight-bold">{{tweet.user.name}}</font> {{ to_JST(tweet.created_at) }}</p>
-                            <p class="p-0 m-0">{{ tweet.text }}</p>
+                            <div class="col-11">
+                                <p class="p-0 m-0"><font class="font-weight-bold">{{tweet.user.name}}</font> {{ to_JST(tweet.created_at) }}</p>
+                                <p class="p-0 m-0">{{ tweet.text }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             {% endfor %}
 
-        </div>
-        <div class="col-3 bg-light">
-            <p>cccc</p>
+            </div>
+            <div class="col-3 bg-light">
+                <p>cccc</p>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
